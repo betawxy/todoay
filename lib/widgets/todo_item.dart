@@ -33,6 +33,9 @@ class TodoItem extends StatelessWidget {
           }
         },
       ),
+      onLongPress: () {
+        state.remove(todo);
+      },
     );
   }
 }

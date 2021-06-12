@@ -6,8 +6,4 @@ class Todo {
     required this.title,
     required this.finished,
   });
-
-  void setFinished(bool newValue) {
-    finished = newValue;
-  }
 }

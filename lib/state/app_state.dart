@@ -19,4 +19,9 @@ class AppState extends ChangeNotifier {
     todo.finished = newFinished;
     notifyListeners();
   }
+
+  void remove(Todo todo) {
+    _todos.remove(todo);
+    notifyListeners();
+  }
 }
