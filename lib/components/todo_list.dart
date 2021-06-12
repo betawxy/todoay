@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/components/todo_item.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({
@@ -9,16 +10,7 @@ class TodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            'Test',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          trailing: Checkbox(
-            value: false,
-            onChanged: (newValue) {},
-          ),
-        );
+        return TodoItem();
       },
       itemCount: 3,
     );
