@@ -7,7 +7,7 @@ class Todo {
     required this.finished,
   });
 
-  void toggleFinished() {
-    finished = !finished;
+  void setFinished(bool newValue) {
+    finished = newValue;
   }
 }
