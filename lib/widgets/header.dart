@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/state/app_state.dart';
 
 import '../consts.dart';
 
@@ -9,6 +11,9 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final taskCount = context.select<AppState, int>(
+      (appState) => appState.todos.length,
+    );
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(50.0),
@@ -36,7 +41,7 @@ class Header extends StatelessWidget {
               ),
             ),
             Text(
-              '12 Tasks',
+              '$taskCount Tasks',
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.white,

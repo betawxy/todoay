@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/state/app_state.dart';
 
 import 'home_screen.dart';
 
@@ -11,8 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => AppState(),
+      child: MaterialApp(
+        home: HomeScreen(),
+      ),
     );
   }
 }
