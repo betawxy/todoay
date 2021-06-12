@@ -14,4 +14,9 @@ class AppState extends ChangeNotifier {
     _todos.add(todo);
     notifyListeners();
   }
+
+  void updateTodo(Todo todo, bool newFinished) {
+    todo.finished = newFinished;
+    notifyListeners();
+  }
 }

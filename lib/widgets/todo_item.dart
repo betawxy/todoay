@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey/models/todo.dart';
 import 'package:todoey/state/app_state.dart';
 
 class TodoItem extends StatelessWidget {
@@ -13,9 +12,8 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var todo = context.select<AppState, Todo>(
-      (state) => state.todos[index],
-    );
+    var state = Provider.of<AppState>(context);
+    var todo = state.todos[index];
 
     return ListTile(
       title: Text(
@@ -26,7 +24,7 @@ class TodoItem extends StatelessWidget {
         value: todo.finished,
         onChanged: (newValue) {
           if (newValue != null) {
-            todo.setFinished(newValue);
+            state.updateTodo(todo, newValue);
           }
         },
       ),
