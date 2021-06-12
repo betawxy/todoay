@@ -56,6 +56,9 @@ class _AddTodoItemButtonState extends State<AddTodoItemButton> {
                     finished: false,
                   ),
                 );
+                setState(() {
+                  content = '';
+                });
                 Navigator.pop(context);
               },
               child: Padding(
