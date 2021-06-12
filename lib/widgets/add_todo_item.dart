@@ -16,68 +16,72 @@ class _AddTodoItemButtonState extends State<AddTodoItemButton> {
   var content = '';
 
   Widget buildModal(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * .45,
-      child: Padding(
-        padding: const EdgeInsets.all(35.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Add Task',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 35,
-                color: kMainColor,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 30,
-              ),
-              child: TextField(
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(35.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Add Task',
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 35,
+                  color: kMainColor,
+                  fontWeight: FontWeight.w700,
                 ),
-                decoration: kTextFieldInputDecoration,
-                onChanged: (newValue) {
-                  setState(() {
-                    content = newValue;
-                  });
-                },
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Provider.of<AppState>(context, listen: false).addTodo(
-                  Todo(
-                    title: content,
-                    finished: false,
-                  ),
-                );
-                setState(() {
-                  content = '';
-                });
-                Navigator.pop(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Add',
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 30,
+                ),
+                child: TextField(
                   style: TextStyle(
                     fontSize: 20,
                   ),
+                  decoration: kTextFieldInputDecoration,
+                  onChanged: (newValue) {
+                    setState(() {
+                      content = newValue;
+                    });
+                  },
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                primary: kMainColor,
-              ),
-            )
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  Provider.of<AppState>(context, listen: false).addTodo(
+                    Todo(
+                      title: content,
+                      finished: false,
+                    ),
+                  );
+                  setState(() {
+                    content = '';
+                  });
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Add',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: kMainColor,
+                ),
+              )
+            ],
+          ),
         ),
+        decoration: kCurvedTopBoxDecoration,
       ),
-      decoration: kCurvedTopBoxDecoration,
     );
   }
 
@@ -94,6 +98,7 @@ class _AddTodoItemButtonState extends State<AddTodoItemButton> {
           backgroundColor: kMainColor,
           onPressed: () {
             showModalBottomSheet<void>(
+              isScrollControlled: true,
               backgroundColor: Colors.transparent,
               context: context,
               builder: buildModal,
