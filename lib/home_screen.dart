@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'components/add_todo_item.dart';
-import 'components/header.dart';
-import 'components/todo_list.dart';
 import 'consts.dart';
+import 'widgets/add_todo_item.dart';
+import 'widgets/header.dart';
+import 'widgets/todo_list.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
     Key? key,
   }) : super(key: key);
 
