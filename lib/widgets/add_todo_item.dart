@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/todo.dart';
+import 'package:todoey/state/app_state.dart';
 
 import '../consts.dart';
 
-class AddTodoItemButton extends StatelessWidget {
+class AddTodoItemButton extends StatefulWidget {
   const AddTodoItemButton({Key? key}) : super(key: key);
+
+  @override
+  _AddTodoItemButtonState createState() => _AddTodoItemButtonState();
+}
+
+class _AddTodoItemButtonState extends State<AddTodoItemButton> {
+  var content = '';
 
   Widget buildModal(BuildContext context) {
     return Container(
@@ -31,10 +41,22 @@ class AddTodoItemButton extends StatelessWidget {
                   fontSize: 20,
                 ),
                 decoration: kTextFieldInputDecoration,
+                onChanged: (newValue) {
+                  setState(() {
+                    content = newValue;
+                  });
+                },
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<AppState>(context, listen: false).addTodo(
+                  Todo(
+                    title: content,
+                    finished: false,
+                  ),
+                );
+              },
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
